@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div#area{
+            background:rgb(19, 98, 163);
+            color: white;
+            width: 200px;
+            height: 200px;
+            line-height: 200px;
+            text-align: center;
+        }
+        div#area2{
+            background:rgb(212, 19, 116);
+            color: white;
+            width: 200px;
+            height: 200px;
+            line-height: 200px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div id = "area" onclick="clicar()" onmouseenter = "entrar()"> 
+        Não Clicou
+    </div>
+    <div id = "area2">
+            Saiu
+    </div>
+
+    <script>
+        var a = window.document.getElementById("area")
+        function clicar() {          
+            if(a.innerText == "Não Clicou"){
+                a.innerText = "Clicou"
+            }
+            else{
+                a.innerText = "Não Clicou"
+            }
+        }
+
+        var b = window.document.getElementById("area2")
+        b.addEventListener("mouseenter",entrar)
+        b.addEventListener("mouseout",sair)
+
+        function entrar() {      
+                b.innerText = "Entrou"
+        }
+        function sair() {
+                b.innerText = "Saiu"
+        }
+
+
+    </script>
+</body>
+</html>
