@@ -1,0 +1,33 @@
+body {
+    margin: 0px;
+    overflow: hidden;
+}
+
+rect{
+    fill: royalblue
+}
+
+text{
+    
+    font-family: sans-serif;
+}
+
+.tick text{
+    font-size: 1.4em;
+    fill: #635F5D;
+}
+
+.tick line{
+    stroke: #C0C0BB;
+}
+
+.label-x{
+    font-size: 1.7em;
+    fill:  #8E8883
+}
+
+.titulo{    
+    font-size: 2em;
+    fill: black
+}
+
