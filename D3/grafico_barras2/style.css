@@ -1,0 +1,12 @@
+body {
+    margin: 0px;
+    overflow: hidden;
+}
+
+rect{
+    fill: royalblue
+}
+
+text{
+    font-size: 1.3em
+}
