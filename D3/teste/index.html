@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Realtime Data Line Graph</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <meta charset='utf-8' />
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <style>
+    body {
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    }
+    #chart {
+      max-width: 600px;
+      max-height: 400px;
+    }
+    </style>
+  </head>
+  <body>
+    <div id="chart"></div>
+    <script src="script.js"></script>
+    <script>
+    var lineArr = [];
+    var MAX_LENGTH = 100;
+    var duration = 500;
+    var chart = realTimeLineChart();
+
+    function randomNumberBounds(min, max) {
+      return Math.floor(Math.random() * max) + min;
+    }
+
+    function seedData() {
+      var now = new Date();
+      for (var i = 0; i < MAX_LENGTH; ++i) {
+        lineArr.push({
+          time: new Date(now.getTime() - ((MAX_LENGTH - i) * duration)),
+          x: randomNumberBounds(0, 5),
+          y: randomNumberBounds(0, 2.5),
+          z: randomNumberBounds(0, 10)
+        });
+      }
+    }
+
+    function updateData() {
+      var now = new Date();
+
+      var lineData = {
+        time: now,
+        x: randomNumberBounds(0, 5),
+        y: randomNumberBounds(0, 2.5),
+        z: randomNumberBounds(0, 10)
+      };
+      lineArr.push(lineData);
+
+      if (lineArr.length > 30) {
+        lineArr.shift();
+      }
+      d3.select("#chart").datum(lineArr).call(chart);
+    }
+
+    function resize() {
+      if (d3.select("#chart svg").empty()) {
+        return;
+      }
+      chart.width(+d3.select("#chart").style("width").replace(/(px)/g, ""));
+      d3.select("#chart").call(chart);
+    }
+
+    document.addEventListener("DOMContentLoaded", function() {
+      seedData();
+      window.setInterval(updateData, 500);
+      d3.select("#chart").datum(lineArr).call(chart);
+      d3.select(window).on('resize', resize);
+    });
+    </script>
+</body>
+</html>
